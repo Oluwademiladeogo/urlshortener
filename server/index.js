@@ -4,8 +4,7 @@ const app = express()
 const helmet = require('helmet')
 const joi = require("joi")
 const mongoose = require('mongoose')
-// const nanoid = require('nanoid')
-const nanoid = import('nanoid')
+const shortid = require('shortid')
 app.use(express.static("./public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +23,7 @@ const urlschema = mongoose.model( 'url', new mongoose.Schema({
 app.post('/url', async(req, res)=>{
     // const { error } = schema.validate(req.body.urlgotten)
     // if(error) return res.send()
-    var shortURL = await nanoid
+    var shortURL = shortid.generate()
     var longURL = req.body.urlgotten
     let uri = new urlschema({
         longURL: longURL,
