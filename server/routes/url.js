@@ -7,7 +7,7 @@ const winston = require('winston')
 //logic: use base url if valid else send err message, check if url gotten from user is valid else send error
 //if user url isvalid, check if its in db, i.e if someone had generated a short url from that previously then send to client. 
 //if not create shorturl by linking base and shortcode. then write to db and send 
-router.post('/shorten', async(req, res)=>{
+router.post('/url', async(req, res)=>{
     //getting the url from the user
     var longURL = req.body.urlgotten
     //base url is the site you want to attach the short parameters to. e.g bit.ly
@@ -45,3 +45,4 @@ router.post('/shorten', async(req, res)=>{
     else return res.status(401).send('Invalid longURL')
     
 })
+module.exports = router
