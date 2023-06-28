@@ -7,9 +7,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet())
 
-// winston.add(new winston.transports.File({filename: 'logfile.log' }))
+winston.add(new winston.transports.File({filename: 'logfile.log' }))
 // ("./startups/logging")()
-const path = './models/'
-app.use('/routes/url.js', url)
-
-
+app.use('/', require('./routes/redirect'))
+app.use('/url', require("./routes/url"))
