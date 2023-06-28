@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
-const winston = require(winston)
+const winston = require('winston')
 const { urlschema } = require('../models/url')
-router.get("/:codeoutput", (req, res, next)=>{
+router.get("/:codeoutput", (req, res)=>{
     try{
     const url = urlschema.findOne({
         shortcode: req.params.codeoutput
@@ -17,3 +16,4 @@ router.get("/:codeoutput", (req, res, next)=>{
         winston.error('Exception: ', ex)
     }
 })
+module.exports = router
